@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.moim.dao.IBoardDao">
+
+	<!-- 게시글 목록 -->
+	<select id="getBoardList" parameterType="com.study.moim.dto.Paging"
+	resultType="com.study.moim.dto.BoardDto">
+		select * from (
+		select * from (
+		select rownum as rn, b.* from ((select * from board order by b_num desc) b)
+		) where rn &gt;= #{startNum}
+		) where rn &lt;= #{endNum}
+	</select>
+	
+	<!-- 총 게시글 갯수 -->
+	<select id="getAllCount" resultType="_int">
+		select count(*) from board
+	</select>
+	
+	<!-- 게시글 상세 -->
+	<select id="getBoardView" resultType="com.study.moim.dto.BoardDto">
+		select * from board where b_num=#{b_num}
+	</select>
+	
+	<!-- 게시글 조회수 증가 -->
+	<update id="plusCount">
+		update board set b_count = b_count+1
+		where b_num=#{b_num}
+	</update>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="com.study.moim.dto.BoardDto">
+		insert into board (b_num, id, pwd, email, region, topic, title, b_content)
+		values (board_seq.nextVal,#{id},#{pwd},#{email},#{region},#{topic},#{title},#{b_content})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="com.study.moim.dto.BoardDto">
+		update board set pwd=#{pwd}, region=#{region}, topic=#{topic}, title=#{title}, b_content=#{b_content}
+		where b_num=#{b_num}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" >
+		delete from board where b_num=#{b_num}
+	</delete>
+	
+	<!-- 내가 작성한 게시글 리스트 -->
+	<select id="getMyBoardList" parameterType="map"
+	resultType="com.study.moim.dto.BoardDto">
+		select * from (
+		select * from (
+		select rownum as rn, b.* from 
+		((select * from board where id=#{id} order by b_num desc) b)
+		) where rn &gt;= #{startNum}
+		) where rn &lt;= #{endNum}
+	</select>
+	
+	<!-- 내가 작성한 게시글 갯수 -->
+	<select id="getMyCount" resultType="_int">
+		select count(*) from board where id =#{id}
+	</select>
+	
+	<!-- 검색한 게시글 리스트 -->
+	<select id="searchList" parameterType="map"
+	resultType="com.study.moim.dto.BoardDto">
+		select * from (
+		select * from (
+		select rownum as rn, b.* from 
+		((select * from board where region=#{region} and topic=#{topic} 
+		and title LIKE '%' || #{title} || '%') b)
+		) where rn &gt;= #{startNum}
+		) where rn &lt;= #{endNum}
+	</select>
+	
+	<!-- 검색한 게시글 갯수 -->
+	<select id="getCount" parameterType="map" resultType="_int">
+		select count(*) from board 
+		where region=#{region} and topic=#{topic} 
+		and title LIKE '%' || #{title} || '%'
+	</select>
+	
+	<!-- 댓글 리스트 -->
+	<select id="getReplyList" resultType="com.study.moim.dto.ReplyDto">
+		select * from reply where b_num =#{b_num}
+	</select>
+	
+	<!-- 댓글 갯수 업데이트 -->
+	<update id="updateReplyCount">
+		update board b
+		set b.reply_count = (select count(r_num) from reply where b_num = #{b_num})
+		where b.b_num = #{b_num}
+	</update>
+	
+
+</mapper>

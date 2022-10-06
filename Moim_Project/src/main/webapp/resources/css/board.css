@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+table             { 
+  border-spacing: 1; 
+  border-collapse: collapse; 
+  background:white;
+  border-radius:6px;
+  overflow:hidden;
+  max-width:800px; 
+  width:100%;
+  margin:0 auto;
+  position:relative;
+  
+  *               { position:relative }
+  
+  td,th           { padding-left:8px}
+
+  thead tr        { 
+    height:60px;
+    background:#FFED86;
+    font-size:16px;
+  }
+  
+  tbody tr        { height:48px; border-bottom:1px solid #E3F1D5 ;
+    &:last-child  { border:0; }
+  }
+  
+  td,th           { text-align:left;
+    &.l           { text-align:right }
+    &.c           { text-align:center }
+    &.r           { text-align:center }
+  }
+}
+
+
+/*board 디자인*/
+#wrap {	width: 971px;margin: 0;	margin-left: auto;	margin-right: auto;}
+h1 {	color: green;}
+table {	width: 100%;	border-collapse: collapse;	font-size: 12px;	line-height: 24px; }
+table td,th {border: #d3d3d3 solid 1px; padding: 5px;}
+th {	background: yellowgreen; }
+a {text-decoration: none;	color: black; }
+a:HOVER {	text-decoration: underline; color: green; }
+
+.box{position:relative; width:500px; height:50px;margin:0 auto;text-align:center;	line-height:50px;}
+.temp{position:relative; width:500px; height:50px;margin:0 auto;}
+.attr1{position:relative; width:250px; height:50px; float:left; background:yellowgreen; 
+		font-size:110%; color:white; text-align:center; line-height:50px; font-weight:bold;}
+.attr2{position:relative;width:248px;height:48px;float:left; border:1px solid gray; 
+ 		font-size:110%; text-align:left;	line-height:50px;}
+ 		
+ 		
+/*myPage 디자인*/ 		
+ul.mypage {list-style:none; list-style-type: disc; text-align:center;}
+li{display:inline-block;}
+
+
+
+/*게시글 수정 및 삭제 비밀번호*/
+.identify{width:500px; height:300px; text-align:center; margin:0 auto;}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.moim.dao.IReplyDao">
+	
+	<!-- 댓글 리스트 -->
+	<select id="getReplyList" resultType="com.study.moim.dto.ReplyDto">
+		select * from reply where b_num=#{b_num}
+	</select>
+	
+	<!-- 댓글 추가 -->
+	<insert id="addReply" parameterType="com.study.moim.dto.ReplyDto" >
+		insert into reply( r_num, r_content, r_id, b_num )
+		values( reply_seq.nextVal, #{r_content}, #{r_id}, #{b_num})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" >
+		delete from reply where r_num=#{r_num} and b_num=#{b_num}
+	</delete>
+	
+	<!-- 게시글 조회수 감소 -->
+	<update id="minusCount">
+		update board set b_count = b_count-1
+		where b_num=#{b_num}
+	</update>
+	
+	<!-- 내가 작성한 댓글 갯수 -->
+	<select id="getMyReplyCount" resultType="_int">
+		select count(*) from reply where r_id =#{r_id}
+	</select>
+	
+	<!-- 내가 작성한 댓글 리스트 -->
+	<select id="getMyReplyList"  parameterType="map" 
+	resultType="com.study.moim.dto.ReplyDto">
+		select * from (
+		select * from (
+		select rownum as rn, b.* from 
+		((select * from reply where r_id=#{r_id} order by b_num desc) b)
+		) where rn &gt;= #{startNum}
+		) where rn &lt;= #{endNum}
+	</select>
+
+</mapper>

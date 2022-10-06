@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.moim.dao.IMemberDao">
+	
+	<!-- 회원조회 -->
+	<select id="getMember" resultType="com.study.moim.dto.MemberDto">
+		select * from member where id=#{id}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="com.study.moim.dto.MemberDto" >
+		insert into member
+		values(#{id}, #{pwd}, #{name}, #{email})
+	</insert>
+	
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="com.study.moim.dto.MemberDto" >
+		update member set pwd=#{pwd}, name=#{name}, email=#{email}
+		where id=#{id}
+	</update>
+
+</mapper>
