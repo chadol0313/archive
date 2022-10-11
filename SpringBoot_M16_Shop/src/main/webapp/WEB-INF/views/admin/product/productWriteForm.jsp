@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../../include/admin/header.jsp"%>
+<%@ include file="../../include/admin/sub_menu.jsp"%>
+<article>
+<h1>상품등록</h1>  
+<form name="frm" method="post">
+<table id="list">
+	<tr><th>상품분류</th>
+		<td colspan="5">
+			<select name="kind">
+    			<c:forEach items="${kindList}" var="kind" varStatus="status">
+      				<option value="${status.count}">${kind}</option>
+   				</c:forEach>
+   			</select>
+	   	</td></tr>
+	<tr><th>상품명</th><td width="343" colspan="5"><input type="text" name="name" size="47" ></td></tr>
+	<tr><th>원가[A]</th><td width="70"><input type="text" name="price1" size="11" onKeyup="cal()"></td>
+		<th>판매가[B]</th><td width="70"><input type="text" name="price2" size="11"  onKeyup="cal()"></td>
+	  	<th>[B-A]</th><td width="72"><input type="text" name="price3" size="11"></td></tr>
+	<tr><th>상세설명</th><td colspan="5"><textarea name="content" rows="8" cols="70" ></textarea></td></tr>
+    <tr>
+    	<th>상품이미지</th>
+    		<td width="343" colspan="5">
+    			<input type="hidden" name="image" id="image">
+    			<div id="filename"></div>
+    		</td>
+    </tr>    
+</table>
+<input class="btn" type="button" value="등록" onClick="go_save()">           
+<input class="btn" type="button" value="취소" onClick="go_mov()">
+</form>
+
+<div style="position:relative; top:-80ppx;">
+	<form name="formm" id="fileForm" method="post" enctype="multipart/form-data">
+		<input type="file" name="fileimage">
+		<input type="button" id="myButton" value="추가">
+	
+	</form>
+</div>
+
+
+</article>
+<%@ include file="../../include/admin/footer.jsp"%> 
