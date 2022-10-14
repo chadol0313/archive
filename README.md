@@ -21,7 +21,7 @@
   + 페이징
   
 4.프로젝트 요약
-  + [PDF](https://drive.google.com/file/d/12rFWvRZYnRaWm-nAOYWRzi8TtDrzNIte/view?usp=sharing)
+  + [PDF](https://drive.google.com/file/d/1whriLreibG0C8HqN9YESodWJNzL4TBEi/view?usp=sharing)
   + [에러정리](https://docs.google.com/spreadsheets/d/1doNV6qBfxQKpyo1uktveAOWH968cZViddYwCrUHW7wQ/edit?usp=sharing)
     
 5.UPDATE
