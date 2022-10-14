@@ -11,7 +11,7 @@
 <body>
 
 <div id="wrap" align="center">
-<br/><h1>👀View Detail</h1><br/>
+<br/><h1>게시물 상세👀</h1><br/>
 	<table>
 		<tr><th>작성자</th><td>${board.id}</td>
 		<th>지역</th><td>
@@ -31,8 +31,19 @@
 		</td></tr>
 		<tr><th>작성일</th><td><fmt:formatDate value="${board.b_date}"/></td>
 			<th>조회수</th><td>${board.b_count }</td></tr>
-			<th>이메일</th><td colspan="3">${board.email }</td></tr>
-		<tr><th>제목</th><td colspan="3">${board.title}</td></tr>
+		<tr><th>이메일</th><td>${board.email }</td>
+			<th>상태</th>
+			<td><c:choose>
+				<c:when test="${board.state eq 'O'}">모집중</c:when>
+				<c:otherwise>마감</c:otherwise>
+			</c:choose>
+			</td></tr>
+		<tr><th>제목</th>
+			<c:choose>
+				<c:when test="${board.state eq 'X' }"><td colspan="3">[마감] ${board.title}</td></c:when>
+				<c:otherwise><td colspan="3">${board.title}</td></c:otherwise>
+			</c:choose>
+		</tr>
 		<tr><th>내용</th><td colspan="3"><pre>${board.b_content}</pre></td>
 		</tr>
 	</table><br>
@@ -59,9 +70,16 @@
 	<tr align="center">
 		<td width="100">${loginUser.id}<input type="hidden" name="id" value="${loginUser.id}"></td>
 		<td width="100"><fmt:formatDate value="${now}"	pattern="MM/dd"></fmt:formatDate></td>
-		<td width="630"><input type="text" name="r_content" size="70"></td>
-		<input type="hidden" name="b_num" value="${board.b_num}">
-		<td width="100"><input type="submit" value="작성" onclick="return reply_check();"></td></tr>
+		<!------------ 모임 마감 유무에 따른 댓글작성 ------------>
+		<c:choose>
+			<c:when test="${board.state eq 'O' }">
+				<td width="630"><input type="text" name="r_content" size="70"></td>
+				<input type="hidden" name="b_num" value="${board.b_num}">
+				<td width="100"><input type="submit" value="작성" onclick="return reply_check();"></td>
+			</c:when>
+			<c:otherwise><td width="630" colspan="2">해당 모임은 마감되었습니다</c:otherwise>
+		</c:choose>
+	</tr>
 		
 	<!------------ 댓글 목록 ------------>
 	<c:forEach var="reply" items="${replyList}">
@@ -97,10 +115,6 @@
 	 }
  }
  </script>
- 
- 
- 
-
 
 </body>
 </html>

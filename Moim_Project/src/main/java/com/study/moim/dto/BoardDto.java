@@ -18,11 +18,12 @@ public class BoardDto {
 	private Date b_date;
 	private int b_count;
 	private int reply_count;
+	private String state;
 	
 	
 	public BoardDto() {}
 	public BoardDto(int b_num, String id, String pwd, String email, int region, int topic, String title,
-			String b_content, Date b_date, int b_count, int reply_count) {
+			String b_content, Date b_date, int b_count, int reply_count, String state) {
 		super();
 		this.b_num = b_num;
 		this.id = id;
@@ -35,6 +36,7 @@ public class BoardDto {
 		this.b_date = b_date;
 		this.b_count = b_count;
 		this.reply_count = reply_count;
+		this.state = state;
 	}
 	
 

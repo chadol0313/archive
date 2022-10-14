@@ -163,6 +163,7 @@ public class BoardController {
 		bdto.setTopic(Integer.parseInt(request.getParameter("topic")));
 		bdto.setTitle(request.getParameter("title"));
 		bdto.setB_content(request.getParameter("b_content"));
+		bdto.setState(request.getParameter("state"));
 		
 		int result = bs.updateBoard(bdto);
 		

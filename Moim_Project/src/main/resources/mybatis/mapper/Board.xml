@@ -10,7 +10,7 @@
 	resultType="com.study.moim.dto.BoardDto">
 		select * from (
 		select * from (
-		select rownum as rn, b.* from ((select * from board order by b_num desc) b)
+		select rownum as rn, b.* from ((select * from board order by state, b_num desc) b)
 		) where rn &gt;= #{startNum}
 		) where rn &lt;= #{endNum}
 	</select>
@@ -39,7 +39,8 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="com.study.moim.dto.BoardDto">
-		update board set pwd=#{pwd}, region=#{region}, topic=#{topic}, title=#{title}, b_content=#{b_content}
+		update board set pwd=#{pwd}, region=#{region}, topic=#{topic}, 
+		title=#{title}, b_content=#{b_content}, state=#{state}
 		where b_num=#{b_num}
 	</update>
 	

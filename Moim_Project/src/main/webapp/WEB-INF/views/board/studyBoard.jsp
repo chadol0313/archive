@@ -18,7 +18,7 @@
 			<div style="float:right;"><a href="boardWriteForm">게시글 등록</a></div></td></tr>
 		
 		<!------------ 게시글 목록 ------------>
-		<tr><th>NO</th><th>지역</th><th>주제</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
+		<tr><th>NO</th><th>지역</th><th>주제</th><th>상태</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
 		<c:forEach var="board" items="${boardList}">
 			<tr class="record">	
 				<td align="center">${board.b_num }</td>
@@ -40,6 +40,10 @@
 				<td align="center">
 					<c:if test="${board.topic == 1 }">스터디</c:if>
 					<c:if test="${board.topic == 2 }">취미</c:if>
+				</td>
+				<td align="center">
+					<c:if test="${board.state eq 'O' }">모집중</c:if>
+					<c:if test="${board.state eq 'X' }">마감</c:if>
 				</td>
 				<td>
 					<c:choose>

@@ -41,6 +41,21 @@
 					    <option value="2">취미</option>
 					</select>
 					</td></tr>	
+			<tr><th>상태</th>
+				<td>
+				<c:choose>
+					<c:when test="${bdto.state eq 'O' }">
+						<input type="radio" id="state" name="state" value="O" checked>
+	    				<label for="contactChoice1">모집중</label>
+	    				<input type="radio" id="state" name="state" value="X">
+					    <label for="contactChoice2">마감</label></c:when>
+	    			<c:otherwise>
+	    				<input type="radio" id="state" name="state" value="O">
+	    				<label for="contactChoice1">모집중</label>
+					    <input type="radio" id="state" name="state" value="X" checked>
+					    <label for="contactChoice2">마감</label></c:otherwise>	
+				</c:choose>    
+				</td></tr>
 			<tr><th>제목</th>
 				<td><input type="text" size="50" name="title" value="${bdto.title}"> * 필수</td></tr>
 			<tr><th>내용</th>
