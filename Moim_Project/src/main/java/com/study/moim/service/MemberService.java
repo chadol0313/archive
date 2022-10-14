@@ -26,6 +26,16 @@ public class MemberService {
 	public int updateMember(MemberDto mdto) {
 		return mdao.updateMember(mdto);
 	}
+	
+	//계정 찾기
+	public MemberDto findMember(String id, String name) {
+		return mdao.findMember(id,name);
+	}
+
+	//비밀번호 수정
+	public int updatePW(MemberDto mdto) {
+		return mdao.updatePW(mdto);
+	}
 
 	
 

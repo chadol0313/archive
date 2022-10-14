@@ -13,4 +13,8 @@ public interface IMemberDao {
 
 	int updateMember(MemberDto mdto);	//회원수정
 
+	MemberDto findMember(String id, String name);	//계정찾기
+
+	int updatePW(MemberDto mdto);	//비밀번호 수정
+
 }

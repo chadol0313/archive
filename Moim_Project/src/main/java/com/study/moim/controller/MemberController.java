@@ -186,5 +186,57 @@ public class MemberController {
 		
 		return "member/updateMemberForm";
 	}
+	
+	//비밀번호 찾기 폼 
+	@RequestMapping("/findForm")
+	public String findForm (Model model, HttpServletRequest request) {
+		return "member/findForm";
+	}
+	
+	
+	//비밀번호 찾기
+	@RequestMapping("/findPW")
+	public String findPW(Model model,  HttpServletRequest request) {
+		String url = "member/updatePWForm";
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		
+		MemberDto mdto = ms.findMember(id,name);
+		
+		if(mdto==null) {
+			model.addAttribute("message", "일치하는 계정이 없습니다");
+			url = "member/findForm";
+		}
+		model.addAttribute("id",id);
+		return url;
+	}
+	
+	@RequestMapping("/updatePW")
+	public String updatePW(Model model, HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String re_pwd = request.getParameter("re_pwd");
+		
+		String url="member/updatePWForm";
+		
+		if(pwd.equals(re_pwd)) {
+			MemberDto mdto = new MemberDto();
+			mdto.setId(id);
+			mdto.setPwd(pwd);
+			
+			
+			int result = ms.updatePW(mdto);
+			
+			if(result ==1) {
+				model.addAttribute("message", "비밀번호가 수정되었습니다. 로그인하세요");
+				url="index";
+			}else {
+				model.addAttribute("message","비밀번호 수정이 실패했습니다. 재시도해주세요");}
+		}else {
+			model.addAttribute("message","비밀번호와 확인이 일치하지않습니다");
+		}
+		return url;
+	}
+	
 
 }

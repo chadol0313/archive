@@ -20,7 +20,8 @@
       <input type="password" name="pwd" placeholder="password"/>
       <input class="input" type="submit" value="LOGIN" class="submit" onClick="return logincheck();">
        <p class="message" style="color:red; font-weight:bold;">${message}</p>
-      <p class="message">Not registered? <a href="joinForm">Create an account</a></p>
+      <p class="message">회원이 아니신가요? <a href="joinForm">회원가입</a></p>
+      <p class="message">비밀번호를 잊으셨나요? <a href="findForm">여기</a></p>
     </form>
   </div>
 </div>
