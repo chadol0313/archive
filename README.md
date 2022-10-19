@@ -26,11 +26,7 @@
 
 </br>
 
-## 3. ERD 설계
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
-
-
-## 4. 기능설명
+## 3. 기능설명
 해당 게시판의 주요 기능은 검색 기능입니다.  
 사용자는 자신이 찾고자하는 지역, 주제 카테고리를 설정하고  
 검색어를 입력하여 검색할 수 있습니다  
@@ -40,12 +36,10 @@
 <summary><b>주요 기능 설명 펼치기</b></summary>
 <div markdown="1">
 
-### 4.1. 전체 흐름
+### 3.1. 전체 흐름
 ![](https://user-images.githubusercontent.com/115128823/196615661-92f8c33a-8876-47f5-8125-3f6b665e73c6.png)
 
-### 4.2. Controller
-
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_controller.png)
+### 3.2. Controller
 
 - **요청 처리** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/java/com/study/moim/controller/BoardController.java#L190)
   - Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
@@ -57,31 +51,27 @@
   - Service 계층에서 넘어온 로직 처리 결과를 model에 넣어줍니다.
   - 지역,주제,검색키워드는 검색결과 페이지에서 검색값을 유지하기위해 각각 따로 model에 넣어주었습니다.
 
-### 4.3. Service
+### 3.3. Service
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service1.png)
-
-- **페이징 및 검색 결과값 처리** :pushpin: [코드 확인]
-  ()
+- **페이징 및 검색 결과값 처리** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/java/com/study/moim/service/BoardService.java#L96)
   - 최종 결과를 담을 해쉬맵 객체를 생성합니다.
   - 페이징 객체를 생성하고 검색에 걸린 총 게시물 갯수를 카운트합니다
   - 페이지 시작번호, 끝번호, 지역, 주제, 검색키워드를 매개변수로 dao에서 넘어온 로직 결과를 List에 담습니다.
   - 페이징과 위의 결과값을 담은 List를 해쉬맵에 담았습니다
 
-### 4.4. Mapper
+### 3.4. Mapper
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
+![](https://user-images.githubusercontent.com/115128823/196623593-79182ce3-fdae-4e4e-bfa2-760e10c0def0.png)
 
-- **검색 키워드 쿼리문** :pushpin: [코드 확인]()
+- **검색 키워드 쿼리문** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/resources/mybatis/mapper/Board.xml#L68)
   - 매개변수 지역과 주제가 일치하며 타이틀에 검색 키워드가 속한 게시글을 검색합니다.
  
-### 4.5. View
+### 3.5. View
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
+![](https://user-images.githubusercontent.com/115128823/196624209-7c08f101-44a7-4381-93a1-4f837df471e0.png)
 
-- **검색 값 유지** :pushpin: [코드 확인]
-  ()
-  - 검색 결과페이지에서도 사용자가 검색했던 검색설정 값을 그대로 유지하여 출력합니다.
+- **검색 값 유지** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/webapp/WEB-INF/views/board/searchPage.jsp#L19)
+  - JSTL문법을 이용하여 검색 결과페이지에서도 검색설정 값을 그대로 유지했습니다.
 </div>
 </details>
 
