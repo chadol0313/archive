@@ -30,13 +30,14 @@
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
 
 
-## 4. 핵심 기능
-이 서비스의 핵심 기능은 컨텐츠 등록 기능입니다.  
-사용자는 단지 컨텐츠의 카테고리를 선택하고, URL만 입력하면 끝입니다.  
-이 단순한 기능의 흐름을 보면, 서비스가 어떻게 동작하는지 알 수 있습니다.  
+## 4. 기능설명
+해당 게시판의 주요 기능은 검색 기능입니다.  
+사용자는 자신이 찾고자하는 지역, 주제 카테고리를 설정하고  
+검색어를 입력하여 검색할 수 있습니다  
+
 
 <details>
-<summary><b>핵심 기능 설명 펼치기</b></summary>
+<summary><b>주요 기능 설명 펼치기</b></summary>
 <div markdown="1">
 
 ### 4.1. 전체 흐름
