@@ -79,42 +79,37 @@
 
 ## 5. 트러블 슈팅
 <details>
-<summary>npm run dev 실행 오류</summary>
+<summary>java.sql.SQLException: ORA-28040</summary>
 <div markdown="1">
 
-- Webpack-dev-server 버전을 3.0.0으로 다운그레이드로 해결
-- `$ npm install —save-dev webpack-dev-server@3.0.0`
+- ojdbc6.jar 파일을 ojdbc8.jar로 변경
 
 </div>
 </details>
 
 <details>
-<summary>vue-devtools 크롬익스텐션 인식 오류 문제</summary>
+<summary>vue-devtools Dao 파일 인식문제</summary>
 <div markdown="1">
   
-  - main.js 파일에 `Vue.config.devtools = true` 추가로 해결
-  - [https://github.com/vuejs/vue-devtools/issues/190](https://github.com/vuejs/vue-devtools/issues/190)
+  - @Mapper 어노테이션 누락으로 추가하여 해결
   
 </div>
 </details>
 
 <details>
-<summary>ElementUI input 박스에서 `v-on:keyup.enter="메소드명"`이 정상 작동 안하는 문제</summary>
+<summary>게시글작성(Board 테이블에 DB추가)</summary>
 <div markdown="1">
   
-  - `v-on:keyup.enter.native=""` 와 같이 .native 추가로 해결
-  
-</div>
+  - 각각의 파라미터를 @RequestParam 으로 받았었으나 오류
+  - Dto 객체를 생성하고 아래와같이 request.getParameter로 수정
+  </div>
 </details>
 
 <details>
-<summary> Post 목록 출력시에 Member 객체 출력 에러 </summary>
+<summary> 게시물 상세페이지 출력 오류 </summary>
 <div markdown="1">
   
-  - 에러 메세지(500에러)
-    - No serializer found for class org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationConfig.SerializationFeature.FAIL_ON_EMPTY_BEANS)
-  - 해결
-    - Post 엔티티에 @ManyToOne 연관관계 매핑을 LAZY 옵션에서 기본(EAGER)옵션으로 수정
+  - @RequestParam 으로 받은 게시글번호를 int 타입에서 String으로 변경
   
 </div>
 </details>
