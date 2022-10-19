@@ -47,41 +47,41 @@
 
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_controller.png)
 
-- **요청 처리** :pushpin: [코드 확인](https://github.com/Integerous/goQuality/blob/b2c5e60761b6308f14eebe98ccdb1949de6c4b99/src/main/java/goQuality/integerous/controller/PostRestController.java#L55)
+- **요청 처리** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/java/com/study/moim/controller/BoardController.java#L190)
   - Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
+  - View로부터 전달받은 지역,주제,검색키워드,페이지를 매개변수로 하여 Service에서 실행한 메서드 값을 받아옵니다.
+  - 받은 결과값은 HashMap에 저장하도록 했습니다.
 
-- **결과 응답** :pushpin: [코드 확인]()
+- **결과 처리** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/java/com/study/moim/controller/BoardController.java#L212)
   - Service 계층에서 넘어온 로직 처리 결과(메세지)를 화면단에 응답해줍니다.
+  - Service 계층에서 넘어온 로직 처리 결과를 model에 넣어줍니다.
+  - 지역,주제,검색키워드는 검색결과 페이지에서 검색값을 유지하기위해 각각 따로 model에 넣어주었습니다.
 
 ### 4.3. Service
 
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service1.png)
 
-- **Http 프로토콜 추가 및 trim()** :pushpin: [코드 확인]()
-  - 사용자가 URL 입력 시 Http 프로토콜을 생략하거나 공백을 넣은 경우,  
-  올바른 URL이 될 수 있도록 Http 프로토콜을 추가해주고, 공백을 제거해줍니다.
+- **페이징 및 검색 결과값 처리** :pushpin: [코드 확인]
+  ()
+  - 최종 결과를 담을 해쉬맵 객체를 생성합니다.
+  - 페이징 객체를 생성하고 검색에 걸린 총 게시물 갯수를 카운트합니다
+  - 페이지 시작번호, 끝번호, 지역, 주제, 검색키워드를 매개변수로 dao에서 넘어온 로직 결과를 List에 담습니다.
+  - 페이징과 위의 결과값을 담은 List를 해쉬맵에 담았습니다
 
-- **URL 접속 확인** :pushpin: [코드 확인]()
-  - 화면단에서 모양새만 확인한 URL이 실제 리소스로 연결되는지 HttpUrlConnection으로 테스트합니다.
-  - 이 때, 빠른 응답을 위해 Request Method를 GET이 아닌 HEAD를 사용했습니다.
-  - (HEAD 메소드는 GET 메소드의 응답 결과의 Body는 가져오지 않고, Header만 확인하기 때문에 GET 메소드에 비해 응답속도가 빠릅니다.)
-
-  ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service2.png)
-
-- **Jsoup 이미지, 제목 파싱** :pushpin: [코드 확인]()
-  - URL 접속 확인결과 유효하면 Jsoup을 사용해서 입력된 URL의 이미지와 제목을 파싱합니다.
-  - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
-  - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
-
-
-### 4.4. Repository
+### 4.4. Mapper
 
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
 
-- **컨텐츠 저장** :pushpin: [코드 확인]()
-  - URL 유효성 체크와 이미지, 제목 파싱이 끝난 컨텐츠는 DB에 저장합니다.
-  - 저장된 컨텐츠는 다시 Repository - Service - Controller를 거쳐 화면단에 송출됩니다.
+- **검색 키워드 쿼리문** :pushpin: [코드 확인]()
+  - 매개변수 지역과 주제가 일치하며 타이틀에 검색 키워드가 속한 게시글을 검색합니다.
+ 
+### 4.5. View
 
+![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
+
+- **검색 값 유지** :pushpin: [코드 확인]
+  ()
+  - 검색 결과페이지에서도 사용자가 검색했던 검색설정 값을 그대로 유지하여 출력합니다.
 </div>
 </details>
 
