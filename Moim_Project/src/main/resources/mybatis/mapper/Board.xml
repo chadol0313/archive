@@ -55,7 +55,7 @@
 		select * from (
 		select * from (
 		select rownum as rn, b.* from 
-		((select * from board where id=#{id} order by b_num desc) b)
+		((select * from board where id=#{id} order by state, b_num desc) b)
 		) where rn &gt;= #{startNum}
 		) where rn &lt;= #{endNum}
 	</select>

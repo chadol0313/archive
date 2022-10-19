@@ -219,6 +219,7 @@ public class BoardController {
 		model.addAttribute("region", region);
 		model.addAttribute("topic", topic);
 		
+		
 		return "board/searchPage";
 	}
 	
