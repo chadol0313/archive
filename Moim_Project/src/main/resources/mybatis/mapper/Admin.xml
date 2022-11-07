@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.moim.dao.IAdminDao">
+
+	<!-- 관리자조회 -->
+	<select id="getAdmin" resultType="com.study.moim.dto.AdminDto">
+		select * from admin where id=#{id}
+	</select>
+	
+	<select id="getAllCount" resultType="_int">
+		select count(*) from member
+	</select>
+	
+	<select id="getMemberList" parameterType="com.study.moim.dto.Paging"
+	resultType="com.study.moim.dto.MemberDto">
+		select * from (
+		select * from (
+		select rownum as rn, b.* from ((select * from member) b)
+		) where rn &gt;= #{startNum}
+		) where rn &lt;= #{endNum}
+	</select>
+	
+	<delete id="deleteMember">
+		delete from member where id = #{string}
+	</delete>
+
+</mapper>

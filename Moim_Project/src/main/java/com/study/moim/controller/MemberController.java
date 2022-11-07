@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.study.moim.dto.AdminDto;
 import com.study.moim.dto.BoardDto;
 import com.study.moim.dto.MemberDto;
 import com.study.moim.dto.Paging;
@@ -44,6 +45,7 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		MemberDto mdto = ms.getMember(id);
+		
 		
 		String url = "index";
 		
