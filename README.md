@@ -5,7 +5,7 @@
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 2022.9.23 ~ 2022.10.15
+- 2022.9.23 ~ 2022.10.10 (기능 계속 업데이트중)
 - 개인 프로젝트
 
 </br>
@@ -71,6 +71,16 @@
 
 - **검색 값 유지** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/ed3ad4bf88edfc0d688e7191011dd5146e17ac91/Moim_Project/src/main/webapp/WEB-INF/views/board/searchPage.jsp#L19)
   - JSTL문법을 이용하여 검색 결과페이지에서도 검색설정 값을 그대로 유지했습니다.
+  
+### 3.6. Admin
+
+
+- **회원 일괄 삭제** :pushpin: [코드 확인](https://github.com/chadol0313/archive/blob/e75201eefb295a52bd300710e90e5066144bb7a4/Moim_Project/src/main/java/com/study/moim/controller/AdminController.java#L76)  
+  - View 페이지에서 checkbox를 사용 -> submit 버튼의 onclick 이벤트를 이용했습니다
+  - checkbox의 value를 id로 지정하여 Controller에서 체크된 id를 String 배열로 받았습니다
+  - String 배열로 받은 id를 하나하나 꺼내야하므로 for문을 작성하고 그 안에 deleteMember 메서드를 동작하게 하였습니다
+  - 삭제 완료 후 다시 회원 리스트 페이지로 돌아가 동작 완료 메세지를 출력합니다
+ 
 </div>
 </details>
 
